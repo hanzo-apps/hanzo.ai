@@ -12,8 +12,8 @@ interface EndpointProps {
 
 const EndpointCard = ({ path, description }: EndpointProps) => {
   return (
-    <div className="bg-neutral-900/40 border border-neutral-800 rounded-lg p-4 hover:border-border transition-all duration-300">
-      <div className="font-mono text-sm text-foreground/60 mb-2">{path}</div>
+    <div className="min-w-0 bg-neutral-900/40 border border-neutral-800 rounded-lg p-4 hover:border-border transition-all duration-300">
+      <div className="font-mono text-sm text-foreground/60 mb-2 break-all">{path}</div>
       <p className="text-muted-foreground text-sm">{description}</p>
     </div>
   );
