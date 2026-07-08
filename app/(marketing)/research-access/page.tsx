@@ -2,7 +2,15 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, FlaskConical, Sparkles, ExternalLink } from 'lucide-react'
+import {
+  ArrowRight,
+  FlaskConical,
+  Sparkles,
+  ExternalLink,
+  Users,
+  Share2,
+  Server,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const ZEN5_MODELS = [
@@ -11,6 +19,24 @@ const ZEN5_MODELS = [
   { id: 'zen5-max', label: 'zen5-max', description: '2M context, largest open-weight' },
   { id: 'zen5-ultra', label: 'zen5-ultra', description: 'Extended reasoning with CoT' },
   { id: 'zen5-mini', label: 'zen5-mini', description: 'Efficient edge deployment' },
+]
+
+const MOVE_UP = [
+  {
+    icon: Users,
+    title: 'Refer friends',
+    description: 'Every signup from your link moves you up the line.',
+  },
+  {
+    icon: Share2,
+    title: 'Share on social',
+    description: 'Post on X, Discord, Telegram, YouTube, or Instagram.',
+  },
+  {
+    icon: Server,
+    title: 'Run a hanzod node',
+    description: 'Contribute a cloud fragment and jump the line.',
+  },
 ]
 
 export default function ResearchAccessPage() {
@@ -47,11 +73,10 @@ export default function ResearchAccessPage() {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8"
             >
-              Hanzo is open access — no waitlist, no application. Create an
-              account and start building today with the Zen model family and
-              hundreds of models behind one API. Zen 5 is in training; preview
-              builds ship to the platform and publish as open weights as they
-              land.
+              Sign up free, then climb the waitlist for access to the Zen model
+              family and hundreds of models behind one API. Zen 5 is in
+              training; preview builds ship to the platform and publish as open
+              weights as they land.
             </motion.p>
 
             <motion.div
@@ -62,7 +87,7 @@ export default function ResearchAccessPage() {
             >
               <Button asChild className="bg-primary text-primary-foreground hover:bg-accent">
                 <a href="https://console.hanzo.ai">
-                  Start building
+                  Sign up free
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </a>
               </Button>
@@ -77,13 +102,59 @@ export default function ResearchAccessPage() {
           </div>
         </section>
 
+        {/* Move up the waitlist */}
+        <section className="pb-16 px-4 md:px-8 lg:px-12">
+          <div className="max-w-3xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="text-center text-xl sm:text-2xl font-medium tracking-tight mb-2"
+            >
+              Move up the line
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="text-center text-sm text-muted-foreground mb-8"
+            >
+              Earn points to jump ahead. The more you contribute, the sooner you
+              get in.
+            </motion.p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {MOVE_UP.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.05 + i * 0.05 }}
+                  className="p-5 rounded-xl border border-border bg-secondary/30"
+                >
+                  <item.icon className="w-5 h-5 text-foreground mb-3" />
+                  <h3 className="font-medium text-foreground text-sm mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Zen 5 lineup */}
         <section className="pb-16 px-4 md:px-8 lg:px-12">
           <div className="max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-2"
             >
               {ZEN5_MODELS.map((model) => (
@@ -111,8 +182,9 @@ export default function ResearchAccessPage() {
           <div className="max-w-2xl mx-auto text-center">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
               className="text-sm text-muted-foreground"
             >
               Released Zen models are open weight.{' '}
