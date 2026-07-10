@@ -1,15 +1,14 @@
-# Canonical CI/CD — imports the shared hanzoai/ci reusable workflow, which
-# reads hanzo.yml (images + test + deploy + kms). No per-repo build logic, no
-# GitHub-hosted runners. Same shape every hanzo/lux/zoo repo uses.
+# Canonical CI/CD — imports the shared hanzoai/ci reusable workflow, which reads
+# the repo-root hanzo.yml (images + test + deploy + kms). No per-repo build
+# logic, no GitHub-hosted runners. Same ~7-line shape every hanzo/lux/zoo repo
+# uses; all real config lives in hanzo.yml.
 #
-# Runner is pinned to the Hanzo arc scale set BY NAME (`hanzo-build-linux-amd64`):
-# ARC scale sets are matched by installation name, not the [self-hosted,linux,
-# amd64] label triple ci defaults to — without this the job sits queued.
-#
-# This replaces the bespoke ci.yml + deploy.yml. platform.hanzo.ai reads the
-# SAME hanzo.yml, so a push can also build in-cluster (BuildKit → operator)
-# with zero GHA dispatch once the repo's webhook is registered at
-# platform.hanzo.ai — the fully GHA-free fast path.
+# The runner is intentionally NOT overridden here: hanzoai/ci already defaults
+# its `runner` input to ["hanzo-build-linux-amd64"] (our arc scale set), so the
+# default already targets the exact pool we want. Passing a `with:` block here
+# is redundant and was the lone structural difference from every green caller
+# (hanzoai/iam, hanzoai/commerce, …); dropping it restores the canonical shape.
+# Deploy fires only on `main` per hanzo.yml; PRs build + test but never deploy.
 name: CI/CD
 
 on:
@@ -22,6 +21,4 @@ on:
 jobs:
   cicd:
     uses: hanzoai/ci/.github/workflows/build.yml@main
-    with:
-      runner: '["hanzo-build-linux-amd64"]'
     secrets: inherit
