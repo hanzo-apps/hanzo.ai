@@ -3,8 +3,8 @@
 import React from "react";
 import { Button } from "@hanzo/ui";
 import { Check } from "lucide-react";
-import { useAnalytics } from "@hanzo/analytics/react";
-import { EVENTS } from "@hanzo/analytics";
+import { useAnalytics } from "@hanzo/capture/react";
+import { EVENTS } from "@hanzo/capture";
 
 interface PricingPlanProps {
   name: string;

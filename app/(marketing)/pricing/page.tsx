@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useAnalytics } from "@hanzo/analytics/react"
-import { EVENTS } from "@hanzo/analytics"
+import { useAnalytics } from "@hanzo/capture/react"
+import { EVENTS } from "@hanzo/capture"
 import PricingHeader from "@/components/pricing/PricingHeader"
 import PersonalPlans from "@/components/pricing/PersonalPlans"
 import TeamEnterprisePlans from "@/components/pricing/TeamEnterprisePlans"

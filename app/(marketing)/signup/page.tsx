@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 import { useIam } from '@hanzo/iam/react'
-import { useAnalytics } from '@hanzo/analytics/react'
-import { EVENTS } from '@hanzo/analytics'
+import { useAnalytics } from '@hanzo/capture/react'
+import { EVENTS } from '@hanzo/capture'
 import { Loader2 } from 'lucide-react'
 
 /**
